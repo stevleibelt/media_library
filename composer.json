@@ -1,0 +1,33 @@
+{
+    "name": "net_bazzline/media_libary",
+    "type": "library",
+    "description": "media libary manage website for audio video book",
+    "keywords": ["php", "web", "media libary", "website", "audio", "video", "book"],
+    "homepage": "https://github.com/stevleibelt/media_libary",
+    "license": "LGPLv3",
+    "authors": [
+	    {
+            "name": "Stev Leibelt",
+            "email": "artodeto@arcor.de",
+            "homepage": "http://artodeto.bazzline.net",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "silex/silex": "v1.1.0",
+        "propel/propel1": "1.6.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "mikey179/vfsStream": "dev-master",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Net\\Bazzline\\MediaLibary\\": "source/",
+            "Test\\Net\\Bazzline\\MediaLibary\\": "tests/"
+        }
+    }
+}
