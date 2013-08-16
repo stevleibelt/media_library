@@ -4,10 +4,21 @@
  * @since 2013-08-16
  */
 
+namespace Net\Bazzline\MediaLibrary;
+
+use Silex\Application as ParentApplication;
+
 require_once __DIR__ . '/../../../../vendor/autoload.php';
 
-//bootstrap
+class Application extends ParentApplication
+{
+    public static function create()
+    {
+        //bootstrap
 
-$application = new Silex\Application();
-$application['key'] = 'media_library_2013-08-16';
+        $application = new self();
+        $application['key'] = 'media_library_2013-08-16';
 
+        return $application;
+    }
+}

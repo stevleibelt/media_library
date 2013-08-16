@@ -6,6 +6,7 @@
  * @since 2013-08-16
  */
 
-$application = require dirname(__FILE__) . '/../source/application.php';
+require dirname(__FILE__) . '/../vendor/autoload.php';
 
-$application->run();
+Net\Bazzline\MediaLibrary\Application::create()
+    ->run();
