@@ -3,7 +3,7 @@
 <!-- http://www.propelorm.org/documentation/02-buildtime.html -->
 <database name="netBazzlineMediaLibrary" defaultIdMethod="native" namespace="Net\Bazzline\MediaLibrary\Model\Database">
     <!-- authentication and user management -->
-	<table	name="user_identities" phpName="Identity" namespace="User">
+	<table	name="user_identities" phpName="Identity" package="User" namespace="User">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
 		<column name="login" type="varchar" size="40" required="true" />
 		<column name="password" type="char" size="40" required="true" />
@@ -22,7 +22,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
 	</table>
-    <table name="user_users" phpName="User" namespace="User">
+    <table name="user_users" phpName="User" package="User" namespace="User">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
         <column name="firstName" type="varchar" size="40" required="true" />
         <column name="lastName" type="varchar" size="40" required="true" />
@@ -69,7 +69,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_artists" phpName="Artist" namespace="Media">
+    <table name="media_artists" phpName="Artist" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="80" required="true" />
 
@@ -82,7 +82,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_audio" phpName="Audio" namespace="Media">
+    <table name="media_audio" phpName="Audio" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="number_of_discs" type="tinyint" size="2" defaultValue="1" />
@@ -96,7 +96,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_audio_track" phpName="Track" namespace="Media\Audio">
+    <table name="media_audio_track" phpName="Track" package="Media" namespace="Media\Audio">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="80" required="true" />
         <column name="audio_id" type="char" size="36" required="true" />
@@ -117,7 +117,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_book" phpName="Book" namespace="Media">
+    <table name="media_book" phpName="Book" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="number_of_pages" type="smallint" size="4" required="true" />
@@ -133,7 +133,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_video" phpName="Video" namespace="Media">
+    <table name="media_video" phpName="Video" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="duration" type="smallint" size="4" required="true" />
@@ -148,7 +148,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_game" phpName="Game" namespace="Media">
+    <table name="media_game" phpName="Game" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="game_plattform_id" type="char" size="36" required="true" />
@@ -165,7 +165,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_comment" phpName="Comment" namespace="Media">
+    <table name="media_comment" phpName="Comment" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="parent_comment_id" type="char" size="36" defaultValue="null" required="true" />
@@ -185,7 +185,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_distributor" phpName="Distributor" namespace="Media">
+    <table name="media_distributor" phpName="Distributor" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
 
@@ -198,7 +198,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_edition" phpName="Edition" namespace="Media">
+    <table name="media_edition" phpName="Edition" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
 
@@ -211,7 +211,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_game_plattform" phpName="GamePlattform" namespace="Media">
+    <table name="media_game_plattform" phpName="GamePlattform" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
 
@@ -224,7 +224,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_genre" phpName="Genre" namespace="Media">
+    <table name="media_genre" phpName="Genre" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="80" required="true" />
 
@@ -237,7 +237,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_language" phpName="Language" namespace="Media">
+    <table name="media_language" phpName="Language" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
         <column name="shortcut" type="char" size="3" required="true" />
@@ -251,7 +251,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_type" phpName="Type" namespace="Media">
+    <table name="media_type" phpName="Type" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="20" required="true" />
 
@@ -264,7 +264,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_to_artist" phpName="MediaToArtist" namespace="Media">
+    <table name="media_to_artist" phpName="MediaToArtist" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="artist_id" type="char" size="36" required="true" />
@@ -281,7 +281,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_to_genre" phpName="MediaToGenre" namespace="Media">
+    <table name="media_to_genre" phpName="MediaToGenre" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="media_genre_id" type="char" size="36" required="true" />
@@ -298,7 +298,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_to_language" phpName="MediaToLanguage" namespace="Media">
+    <table name="media_to_language" phpName="MediaToLanguage" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="media_language_id" type="char" size="36" required="true" />
