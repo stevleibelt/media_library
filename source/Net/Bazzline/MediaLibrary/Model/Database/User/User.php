@@ -1,12 +1,12 @@
 <?php
 
-namespace Net\Bazzline\MediaLibrary\Model\Database\Media;
+namespace Net\Bazzline\MediaLibrary\Model\Database\User;
 
-use Net\Bazzline\MediaLibrary\Model\Database\Media\om\BaseMedia;
+use Net\Bazzline\MediaLibrary\Model\Database\User\om\BaseUser;
 
 
 /**
- * Skeleton subclass for representing a row from the 'net_bazzline_media_library_media_common' table.
+ * Skeleton subclass for representing a row from the 'net_bazzline_media_library_user_users' table.
  *
  *
  *
@@ -18,8 +18,8 @@ use Net\Bazzline\MediaLibrary\Model\Database\Media\om\BaseMedia;
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  *
- * @package    propel.generator.Media
+ * @package    propel.generator.User
  */
-class Media extends BaseMedia
+class User extends BaseUser
 {
 }

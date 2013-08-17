@@ -2,11 +2,11 @@
 
 namespace Net\Bazzline\MediaLibrary\Model\Database\Media;
 
-use Net\Bazzline\MediaLibrary\Model\Database\Media\om\BaseMedia;
+use Net\Bazzline\MediaLibrary\Model\Database\Media\om\BaseEdition;
 
 
 /**
- * Skeleton subclass for representing a row from the 'net_bazzline_media_library_media_common' table.
+ * Skeleton subclass for representing a row from the 'net_bazzline_media_library_media_edition' table.
  *
  *
  *
@@ -20,6 +20,6 @@ use Net\Bazzline\MediaLibrary\Model\Database\Media\om\BaseMedia;
  *
  * @package    propel.generator.Media
  */
-class Media extends BaseMedia
+class Edition extends BaseEdition
 {
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Net\Bazzline\MediaLibrary\Model\Database\Media;
+namespace Net\Bazzline\MediaLibrary\Model\Database\Media\Audio;
 
-use Net\Bazzline\MediaLibrary\Model\Database\Media\om\BaseMedia;
+use Net\Bazzline\MediaLibrary\Model\Database\Media\Audio\om\BaseTrackQuery;
 
 
 /**
- * Skeleton subclass for representing a row from the 'net_bazzline_media_library_media_common' table.
+ * Skeleton subclass for performing query and update operations on the 'net_bazzline_media_library_media_audio_track' table.
  *
  *
  *
@@ -20,6 +20,6 @@ use Net\Bazzline\MediaLibrary\Model\Database\Media\om\BaseMedia;
  *
  * @package    propel.generator.Media
  */
-class Media extends BaseMedia
+class TrackQuery extends BaseTrackQuery
 {
 }
