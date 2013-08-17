@@ -4,7 +4,9 @@
  * @since 2013-08-16
  */
 
+namespace Net\Bazzline\MediaLibrary\Application;
+
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
-Net\Bazzline\MediaLibrary\Application\Application::create()
+Application::create(dirname(__FILE__) . '/../configuration/configuration.php')
     ->run();
