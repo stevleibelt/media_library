@@ -1,0 +1,78 @@
+body{
+	font-size: 10pt;
+	font-family: 'Verdana';
+	color: #111111;
+}
+
+a{
+	text-decoration: none;
+	color: #111111;
+}
+
+a:hover{
+	color: #999999;
+}
+
+table{
+}
+
+th{
+	text-align: left;
+}
+
+#v0{
+	text-align: center;
+	vertical-align: middle;
+	color: #CCCCCC;
+}
+
+#v1{
+	vertical-align: bottom;
+}
+
+#v1h1h0{
+	vertical-align: middle;	
+}
+
+#v1_top{
+	text-align: left;
+}
+
+#v1_bottom{
+	text-align: center;
+}
+
+#v2{
+	font-size: 8pt;
+	text-align: center;
+	vertical-align: middle;
+	color: #CCCCCC;
+}
+
+.a_breadcumb_item{
+	font-size: 8pt;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.a_breadcumb_item_highlighted{
+	font-size: 8pt;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.a_bright_bg{
+	color: #888888;
+}
+
+.a_bright_bg:hover{
+	color: #BBBBBB;
+}
+
+.a_dark_bg{
+	color: #CCCCCC;
+}
+
+.a_dark_bg:hover{
+	color: #FFFFFF;
+}
