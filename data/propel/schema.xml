@@ -2,11 +2,6 @@
 <!-- http://www.propelorm.org/reference/schema.html -->
 <!-- http://www.propelorm.org/documentation/02-buildtime.html -->
 <database name="netBazzlineMediaLibrary" defaultIdMethod="native" tablePrefix="net_bazzline_media_library" namespace="Net\Bazzline\MediaLibrary\Model\Database">
-    <vendor type="mysql">
-        <parameter name="Engine" value="InnoDB"/>
-        <parameter name="Charset" value="utf8"/>
-    </vendor>
-
     <!-- authentication and user management -->
 	<table	name="identities" phpName="Identity" package="Auth">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
@@ -21,6 +16,11 @@
 		<index name="loginIndex">
 			<index-column name="login" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
 	</table>
     <table name="users" phpName="User" package="User">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
@@ -28,7 +28,14 @@
         <column name="lastName" type="varchar" size="40" required="true" />
         <column name="email" type="varchar" size="80" required="true" />
 		<column name="is_active" type="boolean"	required="true" />
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
+
+    <!-- media management -->
     <table name="media" phpName="Media" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="distributor_id" type="char" size="36" required="true" />
@@ -56,6 +63,11 @@
         <foreign-key foreignTable="user">
             <reference local="user_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_artists" phpName="MediaArtist" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -64,6 +76,11 @@
 		<index name="nameIndex">
 			<index-column name="name" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_type_audio" phpName="MediaTypeAudio" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -73,6 +90,11 @@
         <foreign-key foreignTable="media">
             <reference local="media_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_type_audio_track" phpName="MediaTypeAudioTrack" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -89,6 +111,11 @@
         <foreign-key foreignTable="media_type_audio">
             <reference local="audio_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_type_book" phpName="MediaTypeBook" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -100,6 +127,11 @@
         <foreign-key foreignTable="media">
             <reference local="media_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_type_video" phpName="MediaTypeVideo" package="Video">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -110,6 +142,11 @@
         <foreign-key foreignTable="media">
             <reference local="media_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_type_game" phpName="MediaTypeGame" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -122,6 +159,11 @@
         <foreign-key foreignTable="media_game_plattform">
             <reference local="game_plattform_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_comment" phpName="MediaComment" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -137,6 +179,11 @@
         <foreign-key foreignTable="user">
             <reference local="user_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_distributor" phpName="MediaDistributor" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -145,6 +192,11 @@
 		<index name="nameIndex">
 			<index-column name="name" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_edition" phpName="MediaEdition" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -153,6 +205,11 @@
 		<index name="nameIndex">
 			<index-column name="name" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_game_plattform" phpName="MediaGameplattform" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -161,6 +218,11 @@
 		<index name="nameIndex">
 			<index-column name="name" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_genre" phpName="MediaGenre" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -169,6 +231,11 @@
 		<index name="nameIndex">
 			<index-column name="name" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_language" phpName="MediaLanguage" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -178,6 +245,11 @@
 		<index name="nameIndex">
 			<index-column name="name" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_type" phpName="MediaType" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -186,6 +258,11 @@
 		<index name="nameIndex">
 			<index-column name="name" />
 		</index>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_to_artist" phpName="MediaToArtist" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -198,6 +275,11 @@
         <foreign-key foreignTable="media_artists">
             <reference local="media_artist_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_to_genre" phpName="MediaToGenre" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -210,6 +292,11 @@
         <foreign-key foreignTable="media_genre">
             <reference local="media_genre_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
     <table name="media_to_language" phpName="MediaToLanguage" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
@@ -222,5 +309,10 @@
         <foreign-key foreignTable="media_language">
             <reference local="media_language_id" foreign="id" />
         </foreign-key>
+
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
     </table>
 </database>
