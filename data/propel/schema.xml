@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- http://www.propelorm.org/reference/schema.html -->
 <!-- http://www.propelorm.org/documentation/02-buildtime.html -->
-<database name="netBazzlineTool" defaultIdMethod="none" tablePrefix="tool_bazzline_net_">
-	<table	name="identity" phpName="Identity" package="Auth">
+<database name="netBazzlineMediaLibrary" defaultIdMethod="native" tablePrefix="net_bazzline_media_library" namespace="Net\Bazzline\MediaLibrary\Model\Database">
+	<table	name="identities" phpName="Identity" package="Auth">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
 		<column name="login" type="varchar" size="40" required="true" />
 		<column name="password" type="char" size="40" required="true" />
@@ -18,7 +18,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
 	</table>
-    <table name="user" phpName="User" package="User">
+    <table name="users" phpName="User" package="User">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
         <column name="firstName" type="varchar" size="40" required="true" />
         <column name="lastName" type="varchar" size="40" required="true" />
@@ -59,7 +59,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_artist" phpName="MediaArtist" package="Media">
+    <table name="media_artists" phpName="MediaArtist" package="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="80" required="true" />
 		<index name="nameIndex">
@@ -234,7 +234,7 @@
         <foreign-key foreignTable="media">
             <reference local="media_id" foreign="id" />
         </foreign-key>
-        <foreign-key foreignTable="media_artist">
+        <foreign-key foreignTable="media_artists">
             <reference local="media_artist_id" foreign="id" />
         </foreign-key>
         <vendor type="mysql">
