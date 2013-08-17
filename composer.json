@@ -26,8 +26,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Net\\Bazzline\\MediaLibary\\": "source/",
-            "Test\\Net\\Bazzline\\MediaLibary\\": "tests/"
+            "Net\\Bazzline\\MediaLibrary\\": "source/",
+            "Test\\Net\\Bazzline\\MediaLibrary\\": "test/"
         }
     }
 }
