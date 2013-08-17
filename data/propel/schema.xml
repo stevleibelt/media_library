@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- http://www.propelorm.org/reference/schema.html -->
 <!-- http://www.propelorm.org/documentation/02-buildtime.html -->
-<database name="netBazzlineMediaLibrary" defaultIdMethod="native" tablePrefix="net_bazzline_media_library_" namespace="Net\Bazzline\MediaLibrary\Model\Database">
+<database name="netBazzlineMediaLibrary" defaultIdMethod="native" namespace="Net\Bazzline\MediaLibrary\Model\Database">
     <!-- authentication and user management -->
-	<table	name="identities" phpName="Identity" package="User">
+	<table	name="user_identities" phpName="Identity" namespace="User">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
 		<column name="login" type="varchar" size="40" required="true" />
 		<column name="password" type="char" size="40" required="true" />
 		<column name="user_id" type="char"	size="36" required="true" />
 
-        <foreign-key foreignTable="users">
+        <foreign-key foreignTable="user_users">
             <reference local="user_id" foreign="id" />
         </foreign-key>
 
@@ -22,7 +22,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
 	</table>
-    <table name="users" phpName="User" package="User">
+    <table name="user_users" phpName="User" namespace="User">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
         <column name="firstName" type="varchar" size="40" required="true" />
         <column name="lastName" type="varchar" size="40" required="true" />
@@ -36,7 +36,7 @@
     </table>
 
     <!-- media management -->
-    <table name="media" phpName="Media">
+    <table name="media_common" phpName="Media" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="distributor_id" type="char" size="36" required="true" />
         <column name="edition_id" type="char" size="36" required="true" />
@@ -60,7 +60,7 @@
         <foreign-key foreignTable="media_type">
             <reference local="type_id" foreign="id" />
         </foreign-key>
-        <foreign-key foreignTable="users">
+        <foreign-key foreignTable="user_users">
             <reference local="user_id" foreign="id" />
         </foreign-key>
 
@@ -69,7 +69,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_artists" phpName="MediaArtist" package="Media">
+    <table name="media_artists" phpName="Artist" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="80" required="true" />
 
@@ -82,12 +82,12 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_type_audio" phpName="MediaTypeAudio" package="Media">
+    <table name="media_audio" phpName="Audio" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="number_of_discs" type="tinyint" size="2" defaultValue="1" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
 
@@ -96,7 +96,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_type_audio_track" phpName="MediaTypeAudioTrack" package="Media">
+    <table name="media_audio_track" phpName="Track" namespace="Media\Audio">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="80" required="true" />
         <column name="audio_id" type="char" size="36" required="true" />
@@ -108,7 +108,7 @@
             <index-column name="name" />
         </index>
 
-        <foreign-key foreignTable="media_type_audio">
+        <foreign-key foreignTable="media_audio">
             <reference local="audio_id" foreign="id" />
         </foreign-key>
 
@@ -117,14 +117,14 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_type_book" phpName="MediaTypeBook" package="Media">
+    <table name="media_book" phpName="Book" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="number_of_pages" type="smallint" size="4" required="true" />
         <column name="isbn_10" type="char" size="10" defaultValue="" />
         <column name="isbn_13" type="char" size="13" defaultValue="" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
 
@@ -133,13 +133,13 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_type_video" phpName="MediaTypeVideo" package="Video">
+    <table name="media_video" phpName="Video" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="duration" type="smallint" size="4" required="true" />
         <column name="number_of_discs" type="tinyint" size="2" required="true" defaultValue="1" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
 
@@ -148,12 +148,12 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_type_game" phpName="MediaTypeGame" package="Media">
+    <table name="media_game" phpName="Game" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="game_plattform_id" type="char" size="36" required="true" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
         <foreign-key foreignTable="media_game_plattform">
@@ -165,7 +165,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_comment" phpName="MediaComment" package="Media">
+    <table name="media_comment" phpName="Comment" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="parent_comment_id" type="char" size="36" defaultValue="null" required="true" />
@@ -173,10 +173,10 @@
         <column name="create_date" type="timestamp" />
         <column name="comment" type="longvarchar" required="true" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
-        <foreign-key foreignTable="users">
+        <foreign-key foreignTable="user_users">
             <reference local="user_id" foreign="id" />
         </foreign-key>
 
@@ -185,7 +185,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_distributor" phpName="MediaDistributor" package="Media">
+    <table name="media_distributor" phpName="Distributor" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
 
@@ -198,7 +198,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_edition" phpName="MediaEdition" package="Media">
+    <table name="media_edition" phpName="Edition" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
 
@@ -211,7 +211,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_game_plattform" phpName="MediaGameplattform" package="Media">
+    <table name="media_game_plattform" phpName="GamePlattform" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
 
@@ -224,7 +224,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_genre" phpName="MediaGenre" package="Media">
+    <table name="media_genre" phpName="Genre" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="80" required="true" />
 
@@ -237,7 +237,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_language" phpName="MediaLanguage" package="Media">
+    <table name="media_language" phpName="Language" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
         <column name="shortcut" type="char" size="3" required="true" />
@@ -251,7 +251,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_type" phpName="MediaType" package="Media">
+    <table name="media_type" phpName="Type" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="20" required="true" />
 
@@ -264,16 +264,16 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_to_artist" phpName="MediaToArtist" package="Media">
+    <table name="media_to_artist" phpName="MediaToArtist" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
-        <column name="media_artist_id" type="char" size="36" required="true" />
+        <column name="artist_id" type="char" size="36" required="true" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
         <foreign-key foreignTable="media_artists">
-            <reference local="media_artist_id" foreign="id" />
+            <reference local="artist_id" foreign="id" />
         </foreign-key>
 
         <vendor type="mysql">
@@ -281,12 +281,12 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_to_genre" phpName="MediaToGenre" package="Media">
+    <table name="media_to_genre" phpName="MediaToGenre" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="media_genre_id" type="char" size="36" required="true" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
         <foreign-key foreignTable="media_genre">
@@ -298,12 +298,12 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_to_language" phpName="MediaToLanguage" package="Media">
+    <table name="media_to_language" phpName="Language" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="media_language_id" type="char" size="36" required="true" />
 
-        <foreign-key foreignTable="media">
+        <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
         <foreign-key foreignTable="media_language">

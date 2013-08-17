@@ -3,4 +3,4 @@ composer.lock
 phpunit.xml
 .idea
 cache/
-data/propel/build.properties
+data/propel/runtime-conf.xml
