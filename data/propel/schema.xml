@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- http://www.propelorm.org/reference/schema.html -->
 <!-- http://www.propelorm.org/documentation/02-buildtime.html -->
-<database name="netBazzlineMediaLibrary" defaultIdMethod="native" tablePrefix="net_bazzline_media_library" namespace="Net\Bazzline\MediaLibrary\Model\Database">
+<database name="netBazzlineMediaLibrary" defaultIdMethod="native" tablePrefix="net_bazzline_media_library_" namespace="Net\Bazzline\MediaLibrary\Model\Database">
     <!-- authentication and user management -->
 	<table	name="identities" phpName="Identity" package="Auth">
 		<column name="id" primaryKey="true" type="char"	size="36" required="true" />
@@ -60,7 +60,7 @@
         <foreign-key foreignTable="media_type">
             <reference local="type_id" foreign="id" />
         </foreign-key>
-        <foreign-key foreignTable="user">
+        <foreign-key foreignTable="users">
             <reference local="user_id" foreign="id" />
         </foreign-key>
 
@@ -176,7 +176,7 @@
         <foreign-key foreignTable="media">
             <reference local="media_id" foreign="id" />
         </foreign-key>
-        <foreign-key foreignTable="user">
+        <foreign-key foreignTable="users">
             <reference local="user_id" foreign="id" />
         </foreign-key>
 
