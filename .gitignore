@@ -4,3 +4,4 @@ phpunit.xml
 .idea
 cache/
 data/propel/runtime-conf.xml
+data/propel/net-bazzline-media-library-conf.php
