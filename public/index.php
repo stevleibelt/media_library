@@ -6,5 +6,5 @@
 
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
-Net\Bazzline\MediaLibrary\Application::create()
+Net\Bazzline\MediaLibrary\Application\Application::create()
     ->run();
