@@ -298,7 +298,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_to_language" phpName="Language" namespace="Media">
+    <table name="media_to_language" phpName="MediaToLanguage" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
         <column name="media_language_id" type="char" size="36" required="true" />
