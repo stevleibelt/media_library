@@ -119,9 +119,9 @@ class Application extends ParentApplication
             $this->redirect('/authentication/login');
         });
 
-        $this->get('/authentication/login', $this['authentication.controller:login']);
-        $this->get('/authentication/logout', $this['authentication.controller:login']);
-        $this->get('/authentication/register', $this['authentication.controller:login']);
+        $this->get('/authentication/login', $this['authentication.controller:loginAction']);
+        $this->get('/authentication/logout', $this['authentication.controller:logoutAction']);
+        $this->get('/authentication/register', $this['authentication.controller:registerAction']);
 
         return $this;
     }

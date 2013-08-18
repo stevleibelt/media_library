@@ -15,7 +15,7 @@ class Authentication extends AbstractController
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-18
      */
-    public function login()
+    public function loginAction()
     {
 
     }
@@ -26,7 +26,7 @@ class Authentication extends AbstractController
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-18
      */
-    public function logout()
+    public function logoutAction()
     {
 
     }
@@ -37,7 +37,7 @@ class Authentication extends AbstractController
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-18
      */
-    public function register()
+    public function registerAction()
     {
     }
 }
