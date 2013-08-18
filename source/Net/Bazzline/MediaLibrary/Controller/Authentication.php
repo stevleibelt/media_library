@@ -7,7 +7,7 @@
 namespace Net\Bazzline\MediaLibrary\Controller;
 
 
-class Authentication
+class Authentication extends AbstractController
 {
     /**
      * @Route("/login", name="login")

@@ -8,5 +8,15 @@ namespace Net\Bazzline\MediaLibrary\Application;
 
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
-Application::create(dirname(__FILE__) . '/../configuration/configuration.php')
-    ->run();
+$application = new Application();
+$application->setup();
+
+if ($application['debug']) {
+	error_reporting(E_ALL | E_STRICT);
+	ini_set('display_errors', 1);
+	ini_set('log_errors', 1);
+    $application->run();
+} else {
+    $application['http_cache']->run();
+}
+

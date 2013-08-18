@@ -10,3 +10,8 @@ php html javascript media libary for managing audio, video, book and abstract me
 * [Sensiolabs - Silex](http://silex.sensiolabs.org/)
 * [Silcone Skeleton - Silex Bootstrap Application](https://github.com/elfet/silicone-skeleton)
 * [Silex Kitchen Edition - Silex Bootstrap Application](https://github.com/lyrixx/Silex-Kitchen-Edition/tree/master/src)
+* [Silex Examples](https://github.com/igorw/silex-examples)
+* [Silex Rest Example](https://github.com/vesparny/silex-simple-rest)
+* [Silex Propel Service Provider](https://github.com/propelorm/PropelServiceProvider)
+* [Silex User Handling Example](https://github.com/jmpantoja/silex-user)
+* [Silex Skeleton](https://github.com/mablo/Silex-skeletion)

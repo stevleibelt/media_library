@@ -6,7 +6,13 @@
 
 namespace Net\Bazzline\MediaLibrary\Application;
 
+use Net\Bazzline\MediaLibrary\Controller\Authentication;
+use Propel\Silex\PropelServiceProvider;
 use Silex\Application as ParentApplication;
+use Silex\Provider\ServiceControllerServiceProvider;
+use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\HttpCacheServiceProvider;
+use Whoops\Provider\Silex\WhoopsServiceProvider;
 
 /**
  * Class Application
@@ -32,21 +38,12 @@ class Application extends ParentApplication
     protected $configuration;
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-18
-     */
-    public function __construct()
-    {
-        $this->baseDir = dirname(__FILE__) . '/..';
-    }
-
-    /**
      * @param string $pathToConfiguration
      * @return Application
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-18
      */
-    public static function create($pathToConfiguration = '')
+    public function setup($pathToConfiguration = '')
     {
         $application = new self();
 
@@ -57,7 +54,7 @@ class Application extends ParentApplication
             $application->setConfiguration($pathToConfiguration);
         }
         $application->setupBasics()
-            ->setupRouterAndController()
+            ->setupControllersAndRoutes()
             ->setupDatabase()
             ->setupTemplate();
 
@@ -94,8 +91,38 @@ class Application extends ParentApplication
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-18
      */
-    public function setupDatabase()
+    protected function setupDatabase()
     {
+        $this['propel.config_file'] = $this->getConfigurationParameter('propel.configuration');
+        $this['propel.model_path'] = $this->getConfigurationParameter('propel.models');
+        $this->register(new PropelServiceProvider());
+
+        return $this;
+    }
+
+    /**
+     * Based on: http://silex.sensiolabs.org/doc/usage.html
+     *
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-18
+     */
+    protected function setupControllersAndRoutes()
+    {
+        //adding controller
+        $this['authentication.controller'] = $this->share(function() {
+            return new Authentication($this);
+        });
+
+
+        $this->get('/', function () {
+            $this->redirect('/authentication/login');
+        });
+
+        $this->get('/authentication/login', $this['authentication.controller:login']);
+        $this->get('/authentication/logout', $this['authentication.controller:login']);
+        $this->get('/authentication/register', $this['authentication.controller:login']);
+
         return $this;
     }
 
@@ -104,19 +131,17 @@ class Application extends ParentApplication
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-18
      */
-    public function setupRouterAndController()
-    {
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-18
-     */
-    public function setupBasics()
+    protected function setupBasics()
     {
         $this['debug'] = $this->getConfigurationParameter('debug', false);
+        $this->baseDir = dirname(__FILE__) . '/..';
+        $this->register(new ServiceControllerServiceProvider());
+        $this->register(new SessionServiceProvider());
+        $this->register(new HttpCacheServiceProvider(),
+            array('http_cache.cache_dir' => $this->getConfigurationParameter('cache.http', '/')));
+        if($this['debug']) {
+            $this->register(new WhoopsServiceProvider);
+        }
 
         return $this;
     }
@@ -126,7 +151,7 @@ class Application extends ParentApplication
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-18
      */
-    public function setupTemplate()
+    protected function setupTemplate()
     {
         $this['twig.path'] = array(
             $this->baseDir . '/View'
