@@ -10,11 +10,11 @@ class Authentication extends AbstractController
 {
     public function login()
     {
-
+        return 'login';
     }
 
     public function logout()
     {
-
+        return 'logout';
     }
 }
