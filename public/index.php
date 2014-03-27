@@ -4,17 +4,18 @@
  * @since 2013-08-16
  */
 
-require_once '../../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use Luracast\Restler\Restler;
 
 $server = new Restler();
 
-$server->addAPIClass('Controller\Authentication', '/api/authentication');
+$server->addAPIClass('Controller\Index');
 
 /*
 //long way to go 1 / 19 - started: 140327
 //general
+$server->addAPIClass('Controller\Authentication', '/api/authentication');
 $server->addAPIClass('Controller\Search', '/api/search');
 $server->addAPIClass('Controller\User', '/api/user');
 //media library
