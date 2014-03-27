@@ -26,8 +26,11 @@
     },
     "autoload": {
         "psr-0": {
-            "Net\\Bazzline\\MediaLibrary\\": "source/",
-            "Test\\Net\\Bazzline\\MediaLibrary\\": "test/"
+            "Controller": "source/",
+            "Database": "source/",
+            "Layout": "source/",
+            "View": "source/",
+            "Test": "test/Test/"
         }
     }
 }
