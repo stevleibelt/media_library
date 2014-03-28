@@ -29,6 +29,7 @@
             "Controller": "source/",
             "Database": "source/",
             "Layout": "source/",
+            "Service": "source/",
             "View": "source/",
             "Test": "test/Test/"
         }
