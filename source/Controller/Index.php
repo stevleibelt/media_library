@@ -13,7 +13,7 @@ class Index extends AbstractController
      * @url GET /api/all
      * @return string
      */
-    public function get()
+    public function getAll()
     {
         return 'you have called me with ' . implode(', ', func_get_args());
     }

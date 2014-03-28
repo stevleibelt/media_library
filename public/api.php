@@ -10,7 +10,7 @@ use Luracast\Restler\Restler;
 
 $server = new Restler();
 
-$server->addAPIClass('Controller\Index');
+$server->addAPIClass('Controller\Index', '/');
 
 /*
 //long way to go 1 / 19 - started: 140327
