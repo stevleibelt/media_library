@@ -12,7 +12,7 @@ use Service\Locator;
  * Class Database
  * @package Service\Factory
  */
-class DatabaseLocator implements FactoryInterface
+class DatabaseLocatorFactory implements FactoryInterface
 {
     /**
      * @param Locator $locator

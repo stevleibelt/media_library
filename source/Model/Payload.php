@@ -7,7 +7,7 @@
 namespace Model;
 
 /**
- * Class Payload
+ * Class PayloadFactory
  * @package Model
  */
 class Payload

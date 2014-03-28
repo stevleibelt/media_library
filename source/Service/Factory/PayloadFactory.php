@@ -9,10 +9,10 @@ namespace Service\Factory;
 use Service\Locator;
 
 /**
- * Class Payload
+ * Class PayloadFactory
  * @package Service\Factory
  */
-class Payload implements FactoryInterface
+class PayloadFactory implements FactoryInterface
 {
     /**
      * @param Locator $locator
