@@ -1,4 +1,4 @@
-#DirectoryIndex index.html index.php
+#http://www.askapache.com/htaccess/modrewrite-tips-tricks.html
 <IfModule dir_module>
     DirectoryIndex index.html index.php
 </IfModule>
