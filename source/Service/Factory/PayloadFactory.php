@@ -6,6 +6,7 @@
 
 namespace Service\Factory;
 
+use Model\Payload;
 use Service\Locator;
 
 /**
@@ -20,6 +21,6 @@ class PayloadFactory implements FactoryInterface
      */
     public function provide(Locator $locator)
     {
-        return new \Model\Payload();
+        return new Payload();
     }
 }
