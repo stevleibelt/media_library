@@ -6,6 +6,8 @@
 
 namespace Service\Factory;
 
+use Propel;
+use Service\DatabaseLocator;
 use Service\Locator;
 
 /**
@@ -20,6 +22,11 @@ class DatabaseLocatorFactory implements FactoryInterface
      */
     public function provide(Locator $locator)
     {
-        // TODO: Implement provide() method.
+        if (!Propel::isInit()) {
+            $pathToPropelConfiguration = realpath(__FILE__ . '/../../../propel/net-bazzline-media-library-conf.php');
+            Propel::init($pathToPropelConfiguration);
+        }
+
+        return new DatabaseLocator();
     }
 }
