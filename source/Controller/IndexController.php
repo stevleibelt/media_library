@@ -6,8 +6,7 @@
 
 namespace Controller;
 
-
-class Index extends AbstractController
+class IndexController extends AbstractController
 {
     /**
      * @url GET /api/all

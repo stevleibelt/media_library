@@ -10,30 +10,30 @@ use Luracast\Restler\Restler;
 
 $server = new Restler();
 
-$server->addAPIClass('Controller\Index', '/');
+$server->addAPIClass('Controller\IndexController', '/');
 
 /*
 //long way to go 1 / 19 - started: 140327
 //general
-$server->addAPIClass('Controller\Authentication', '/api/authentication');
-$server->addAPIClass('Controller\Search', '/api/search');
-$server->addAPIClass('Controller\User', '/api/user');
+$server->addAPIClass('Controller\AuthenticationController', '/api/authentication');
+$server->addAPIClass('Controller\SearchController', '/api/search');
+$server->addAPIClass('Controller\UserController', '/api/user');
 //media library
-$server->addAPIClass('Controller\Artist', '/api/artist');
-$server->addAPIClass('Controller\Audio', '/api/audio');
-$server->addAPIClass('Controller\Book', '/api/book');
-$server->addAPIClass('Controller\Comment', '/api/comment');
-$server->addAPIClass('Controller\Common', '/api/common');
-$server->addAPIClass('Controller\Distributor', '/api/distributor');
-$server->addAPIClass('Controller\Edition', '/api/edition');
-$server->addAPIClass('Controller\Game', '/api/game');
-$server->addAPIClass('Controller\Genre', '/api/genre');
-$server->addAPIClass('Controller\Language', '/api/language');
-$server->addAPIClass('Controller\Media', '/api/media');
-$server->addAPIClass('Controller\Plattform', '/api/plattform');
-$server->addAPIClass('Controller\Type', '/api/type');
-$server->addAPIClass('Controller\Track', '/api/track');
-$server->addAPIClass('Controller\Video', '/api/video');
+$server->addAPIClass('Controller\ArtistController', '/api/artist');
+$server->addAPIClass('Controller\AudioController', '/api/audio');
+$server->addAPIClass('Controller\BookController', '/api/book');
+$server->addAPIClass('Controller\CommentController', '/api/comment');
+$server->addAPIClass('Controller\CommonController', '/api/common');
+$server->addAPIClass('Controller\DistributorController', '/api/distributor');
+$server->addAPIClass('Controller\EditionController', '/api/edition');
+$server->addAPIClass('Controller\GameController', '/api/game');
+$server->addAPIClass('Controller\GenreController', '/api/genre');
+$server->addAPIClass('Controller\LanguageController', '/api/language');
+$server->addAPIClass('Controller\MediaController', '/api/media');
+$server->addAPIClass('Controller\PlatformController', '/api/platform');
+$server->addAPIClass('Controller\TypeController', '/api/type');
+$server->addAPIClass('Controller\TrackController', '/api/track');
+$server->addAPIClass('Controller\VideoController', '/api/video');
 */
 
 $server->handle();
