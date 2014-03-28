@@ -12,13 +12,13 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
-use Database\Media\Language;
-use Database\Media\LanguagePeer;
-use Database\Media\LanguageQuery;
-use Database\Media\MediaToLanguage;
+use Database\Media\Game;
+use Database\Media\GamePlatform;
+use Database\Media\GamePlatformPeer;
+use Database\Media\GamePlatformQuery;
 
 /**
- * Base class that represents a query for the 'net_bazzline_media_library_media_language' table.
+ * Base class that represents a query for the 'net_bazzline_media_library_media_game_platform' table.
  *
  *
  *
@@ -26,38 +26,34 @@ use Database\Media\MediaToLanguage;
  *
  * Fri Mar 28 23:55:59 2014
  *
- * @method LanguageQuery orderById($order = Criteria::ASC) Order by the id column
- * @method LanguageQuery orderByName($order = Criteria::ASC) Order by the name column
- * @method LanguageQuery orderByShortcut($order = Criteria::ASC) Order by the shortcut column
+ * @method GamePlatformQuery orderById($order = Criteria::ASC) Order by the id column
+ * @method GamePlatformQuery orderByName($order = Criteria::ASC) Order by the name column
  *
- * @method LanguageQuery groupById() Group by the id column
- * @method LanguageQuery groupByName() Group by the name column
- * @method LanguageQuery groupByShortcut() Group by the shortcut column
+ * @method GamePlatformQuery groupById() Group by the id column
+ * @method GamePlatformQuery groupByName() Group by the name column
  *
- * @method LanguageQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
- * @method LanguageQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
- * @method LanguageQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ * @method GamePlatformQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
+ * @method GamePlatformQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
+ * @method GamePlatformQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method LanguageQuery leftJoinMediaToLanguage($relationAlias = null) Adds a LEFT JOIN clause to the query using the MediaToLanguage relation
- * @method LanguageQuery rightJoinMediaToLanguage($relationAlias = null) Adds a RIGHT JOIN clause to the query using the MediaToLanguage relation
- * @method LanguageQuery innerJoinMediaToLanguage($relationAlias = null) Adds a INNER JOIN clause to the query using the MediaToLanguage relation
+ * @method GamePlatformQuery leftJoinGame($relationAlias = null) Adds a LEFT JOIN clause to the query using the Game relation
+ * @method GamePlatformQuery rightJoinGame($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Game relation
+ * @method GamePlatformQuery innerJoinGame($relationAlias = null) Adds a INNER JOIN clause to the query using the Game relation
  *
- * @method Language findOne(PropelPDO $con = null) Return the first Language matching the query
- * @method Language findOneOrCreate(PropelPDO $con = null) Return the first Language matching the query, or a new Language object populated from the query conditions when no match is found
+ * @method GamePlatform findOne(PropelPDO $con = null) Return the first GamePlatform matching the query
+ * @method GamePlatform findOneOrCreate(PropelPDO $con = null) Return the first GamePlatform matching the query, or a new GamePlatform object populated from the query conditions when no match is found
  *
- * @method Language findOneByName(string $name) Return the first Language filtered by the name column
- * @method Language findOneByShortcut(string $shortcut) Return the first Language filtered by the shortcut column
+ * @method GamePlatform findOneByName(string $name) Return the first GamePlatform filtered by the name column
  *
- * @method array findById(string $id) Return Language objects filtered by the id column
- * @method array findByName(string $name) Return Language objects filtered by the name column
- * @method array findByShortcut(string $shortcut) Return Language objects filtered by the shortcut column
+ * @method array findById(string $id) Return GamePlatform objects filtered by the id column
+ * @method array findByName(string $name) Return GamePlatform objects filtered by the name column
  *
  * @package    propel.generator.Media.om
  */
-abstract class BaseLanguageQuery extends ModelCriteria
+abstract class BaseGamePlatformQuery extends ModelCriteria
 {
     /**
-     * Initializes internal state of BaseLanguageQuery object.
+     * Initializes internal state of BaseGamePlatformQuery object.
      *
      * @param     string $dbName The dabase name
      * @param     string $modelName The phpName of a model, e.g. 'Book'
@@ -69,25 +65,25 @@ abstract class BaseLanguageQuery extends ModelCriteria
             $dbName = 'netBazzlineMediaLibrary';
         }
         if (null === $modelName) {
-            $modelName = 'Database\\Media\\Language';
+            $modelName = 'Database\\Media\\GamePlatform';
         }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
     /**
-     * Returns a new LanguageQuery object.
+     * Returns a new GamePlatformQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param   LanguageQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param   GamePlatformQuery|Criteria $criteria Optional Criteria to build the query from
      *
-     * @return LanguageQuery
+     * @return GamePlatformQuery
      */
     public static function create($modelAlias = null, $criteria = null)
     {
-        if ($criteria instanceof LanguageQuery) {
+        if ($criteria instanceof GamePlatformQuery) {
             return $criteria;
         }
-        $query = new LanguageQuery(null, null, $modelAlias);
+        $query = new GamePlatformQuery(null, null, $modelAlias);
 
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
@@ -108,19 +104,19 @@ abstract class BaseLanguageQuery extends ModelCriteria
      * @param mixed $key Primary key to use for the query
      * @param     PropelPDO $con an optional connection object
      *
-     * @return   Language|Language[]|mixed the result, formatted by the current formatter
+     * @return   GamePlatform|GamePlatform[]|mixed the result, formatted by the current formatter
      */
     public function findPk($key, $con = null)
     {
         if ($key === null) {
             return null;
         }
-        if ((null !== ($obj = LanguagePeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
+        if ((null !== ($obj = GamePlatformPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
             // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
-            $con = Propel::getConnection(LanguagePeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(GamePlatformPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
         $this->basePreSelect($con);
         if ($this->formatter || $this->modelAlias || $this->with || $this->select
@@ -138,7 +134,7 @@ abstract class BaseLanguageQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return                 Language A model object, or null if the key is not found
+     * @return                 GamePlatform A model object, or null if the key is not found
      * @throws PropelException
      */
      public function findOneById($key, $con = null)
@@ -153,12 +149,12 @@ abstract class BaseLanguageQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return                 Language A model object, or null if the key is not found
+     * @return                 GamePlatform A model object, or null if the key is not found
      * @throws PropelException
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT id, name, shortcut FROM net_bazzline_media_library_media_language WHERE id = :p0';
+        $sql = 'SELECT id, name FROM net_bazzline_media_library_media_game_platform WHERE id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_STR);
@@ -169,9 +165,9 @@ abstract class BaseLanguageQuery extends ModelCriteria
         }
         $obj = null;
         if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $obj = new Language();
+            $obj = new GamePlatform();
             $obj->hydrate($row);
-            LanguagePeer::addInstanceToPool($obj, (string) $key);
+            GamePlatformPeer::addInstanceToPool($obj, (string) $key);
         }
         $stmt->closeCursor();
 
@@ -184,7 +180,7 @@ abstract class BaseLanguageQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return Language|Language[]|mixed the result, formatted by the current formatter
+     * @return GamePlatform|GamePlatform[]|mixed the result, formatted by the current formatter
      */
     protected function findPkComplex($key, $con)
     {
@@ -205,7 +201,7 @@ abstract class BaseLanguageQuery extends ModelCriteria
      * @param     array $keys Primary keys to use for the query
      * @param     PropelPDO $con an optional connection object
      *
-     * @return PropelObjectCollection|Language[]|mixed the list of results, formatted by the current formatter
+     * @return PropelObjectCollection|GamePlatform[]|mixed the list of results, formatted by the current formatter
      */
     public function findPks($keys, $con = null)
     {
@@ -226,12 +222,12 @@ abstract class BaseLanguageQuery extends ModelCriteria
      *
      * @param     mixed $key Primary key to use for the query
      *
-     * @return LanguageQuery The current query, for fluid interface
+     * @return GamePlatformQuery The current query, for fluid interface
      */
     public function filterByPrimaryKey($key)
     {
 
-        return $this->addUsingAlias(LanguagePeer::ID, $key, Criteria::EQUAL);
+        return $this->addUsingAlias(GamePlatformPeer::ID, $key, Criteria::EQUAL);
     }
 
     /**
@@ -239,12 +235,12 @@ abstract class BaseLanguageQuery extends ModelCriteria
      *
      * @param     array $keys The list of primary key to use for the query
      *
-     * @return LanguageQuery The current query, for fluid interface
+     * @return GamePlatformQuery The current query, for fluid interface
      */
     public function filterByPrimaryKeys($keys)
     {
 
-        return $this->addUsingAlias(LanguagePeer::ID, $keys, Criteria::IN);
+        return $this->addUsingAlias(GamePlatformPeer::ID, $keys, Criteria::IN);
     }
 
     /**
@@ -260,7 +256,7 @@ abstract class BaseLanguageQuery extends ModelCriteria
      *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return LanguageQuery The current query, for fluid interface
+     * @return GamePlatformQuery The current query, for fluid interface
      */
     public function filterById($id = null, $comparison = null)
     {
@@ -273,7 +269,7 @@ abstract class BaseLanguageQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(LanguagePeer::ID, $id, $comparison);
+        return $this->addUsingAlias(GamePlatformPeer::ID, $id, $comparison);
     }
 
     /**
@@ -289,7 +285,7 @@ abstract class BaseLanguageQuery extends ModelCriteria
      *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return LanguageQuery The current query, for fluid interface
+     * @return GamePlatformQuery The current query, for fluid interface
      */
     public function filterByName($name = null, $comparison = null)
     {
@@ -302,74 +298,45 @@ abstract class BaseLanguageQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(LanguagePeer::NAME, $name, $comparison);
+        return $this->addUsingAlias(GamePlatformPeer::NAME, $name, $comparison);
     }
 
     /**
-     * Filter the query on the shortcut column
+     * Filter the query by a related Game object
      *
-     * Example usage:
-     * <code>
-     * $query->filterByShortcut('fooValue');   // WHERE shortcut = 'fooValue'
-     * $query->filterByShortcut('%fooValue%'); // WHERE shortcut LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $shortcut The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param   Game|PropelObjectCollection $game  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return LanguageQuery The current query, for fluid interface
-     */
-    public function filterByShortcut($shortcut = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($shortcut)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $shortcut)) {
-                $shortcut = str_replace('*', '%', $shortcut);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(LanguagePeer::SHORTCUT, $shortcut, $comparison);
-    }
-
-    /**
-     * Filter the query by a related MediaToLanguage object
-     *
-     * @param   MediaToLanguage|PropelObjectCollection $mediaToLanguage  the related object to use as filter
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return                 LanguageQuery The current query, for fluid interface
+     * @return                 GamePlatformQuery The current query, for fluid interface
      * @throws PropelException - if the provided filter is invalid.
      */
-    public function filterByMediaToLanguage($mediaToLanguage, $comparison = null)
+    public function filterByGame($game, $comparison = null)
     {
-        if ($mediaToLanguage instanceof MediaToLanguage) {
+        if ($game instanceof Game) {
             return $this
-                ->addUsingAlias(LanguagePeer::ID, $mediaToLanguage->getMediaLanguageId(), $comparison);
-        } elseif ($mediaToLanguage instanceof PropelObjectCollection) {
+                ->addUsingAlias(GamePlatformPeer::ID, $game->getGamePlatformId(), $comparison);
+        } elseif ($game instanceof PropelObjectCollection) {
             return $this
-                ->useMediaToLanguageQuery()
-                ->filterByPrimaryKeys($mediaToLanguage->getPrimaryKeys())
+                ->useGameQuery()
+                ->filterByPrimaryKeys($game->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByMediaToLanguage() only accepts arguments of type MediaToLanguage or PropelCollection');
+            throw new PropelException('filterByGame() only accepts arguments of type Game or PropelCollection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the MediaToLanguage relation
+     * Adds a JOIN clause to the query using the Game relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
-     * @return LanguageQuery The current query, for fluid interface
+     * @return GamePlatformQuery The current query, for fluid interface
      */
-    public function joinMediaToLanguage($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinGame($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('MediaToLanguage');
+        $relationMap = $tableMap->getRelation('Game');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -384,14 +351,14 @@ abstract class BaseLanguageQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'MediaToLanguage');
+            $this->addJoinObject($join, 'Game');
         }
 
         return $this;
     }
 
     /**
-     * Use the MediaToLanguage relation MediaToLanguage object
+     * Use the Game relation Game object
      *
      * @see       useQuery()
      *
@@ -399,26 +366,26 @@ abstract class BaseLanguageQuery extends ModelCriteria
      *                                   to be used as main alias in the secondary query
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
-     * @return   \Database\Media\MediaToLanguageQuery A secondary query class using the current class as primary query
+     * @return   \Database\Media\GameQuery A secondary query class using the current class as primary query
      */
-    public function useMediaToLanguageQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useGameQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinMediaToLanguage($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'MediaToLanguage', '\Database\Media\MediaToLanguageQuery');
+            ->joinGame($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Game', '\Database\Media\GameQuery');
     }
 
     /**
      * Exclude object from result
      *
-     * @param   Language $language Object to remove from the list of results
+     * @param   GamePlatform $gamePlatform Object to remove from the list of results
      *
-     * @return LanguageQuery The current query, for fluid interface
+     * @return GamePlatformQuery The current query, for fluid interface
      */
-    public function prune($language = null)
+    public function prune($gamePlatform = null)
     {
-        if ($language) {
-            $this->addUsingAlias(LanguagePeer::ID, $language->getId(), Criteria::NOT_EQUAL);
+        if ($gamePlatform) {
+            $this->addUsingAlias(GamePlatformPeer::ID, $gamePlatform->getId(), Criteria::NOT_EQUAL);
         }
 
         return $this;

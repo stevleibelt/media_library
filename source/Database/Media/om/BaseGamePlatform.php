@@ -13,14 +13,14 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
-use Database\Media\Edition;
-use Database\Media\EditionPeer;
-use Database\Media\EditionQuery;
-use Database\Media\Media;
-use Database\Media\MediaQuery;
+use Database\Media\Game;
+use Database\Media\GamePlatform;
+use Database\Media\GamePlatformPeer;
+use Database\Media\GamePlatformQuery;
+use Database\Media\GameQuery;
 
 /**
- * Base class that represents a row from the 'net_bazzline_media_library_media_edition' table.
+ * Base class that represents a row from the 'net_bazzline_media_library_media_game_platform' table.
  *
  *
  *
@@ -30,18 +30,18 @@ use Database\Media\MediaQuery;
  *
  * @package    propel.generator.Media.om
  */
-abstract class BaseEdition extends BaseObject implements Persistent
+abstract class BaseGamePlatform extends BaseObject implements Persistent
 {
     /**
      * Peer class name
      */
-    const PEER = 'Database\\Media\\EditionPeer';
+    const PEER = 'Database\\Media\\GamePlatformPeer';
 
     /**
      * The Peer class.
      * Instance provides a convenient way of calling static methods on a class
      * that calling code may not be able to identify.
-     * @var        EditionPeer
+     * @var        GamePlatformPeer
      */
     protected static $peer;
 
@@ -64,10 +64,10 @@ abstract class BaseEdition extends BaseObject implements Persistent
     protected $name;
 
     /**
-     * @var        PropelObjectCollection|Media[] Collection to store aggregation of Media objects.
+     * @var        PropelObjectCollection|Game[] Collection to store aggregation of Game objects.
      */
-    protected $collMedias;
-    protected $collMediasPartial;
+    protected $collGames;
+    protected $collGamesPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -93,7 +93,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
-    protected $mediasScheduledForDeletion = null;
+    protected $gamesScheduledForDeletion = null;
 
     /**
      * Get the [id] column value.
@@ -121,7 +121,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      * Set the value of [id] column.
      *
      * @param  string $v new value
-     * @return Edition The current object (for fluent API support)
+     * @return GamePlatform The current object (for fluent API support)
      */
     public function setId($v)
     {
@@ -131,7 +131,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
 
         if ($this->id !== $v) {
             $this->id = $v;
-            $this->modifiedColumns[] = EditionPeer::ID;
+            $this->modifiedColumns[] = GamePlatformPeer::ID;
         }
 
 
@@ -142,7 +142,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      * Set the value of [name] column.
      *
      * @param  string $v new value
-     * @return Edition The current object (for fluent API support)
+     * @return GamePlatform The current object (for fluent API support)
      */
     public function setName($v)
     {
@@ -152,7 +152,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
 
         if ($this->name !== $v) {
             $this->name = $v;
-            $this->modifiedColumns[] = EditionPeer::NAME;
+            $this->modifiedColumns[] = GamePlatformPeer::NAME;
         }
 
 
@@ -202,10 +202,10 @@ abstract class BaseEdition extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 2; // 2 = EditionPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 2; // 2 = GamePlatformPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException("Error populating Edition object", $e);
+            throw new PropelException("Error populating GamePlatform object", $e);
         }
     }
 
@@ -248,13 +248,13 @@ abstract class BaseEdition extends BaseObject implements Persistent
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(EditionPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(GamePlatformPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $stmt = EditionPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
+        $stmt = GamePlatformPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
         $row = $stmt->fetch(PDO::FETCH_NUM);
         $stmt->closeCursor();
         if (!$row) {
@@ -264,7 +264,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->collMedias = null;
+            $this->collGames = null;
 
         } // if (deep)
     }
@@ -286,12 +286,12 @@ abstract class BaseEdition extends BaseObject implements Persistent
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(EditionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(GamePlatformPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         $con->beginTransaction();
         try {
-            $deleteQuery = EditionQuery::create()
+            $deleteQuery = GamePlatformQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -329,7 +329,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(EditionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(GamePlatformPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         $con->beginTransaction();
@@ -349,7 +349,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                EditionPeer::addInstanceToPool($this);
+                GamePlatformPeer::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -390,17 +390,17 @@ abstract class BaseEdition extends BaseObject implements Persistent
                 $this->resetModified();
             }
 
-            if ($this->mediasScheduledForDeletion !== null) {
-                if (!$this->mediasScheduledForDeletion->isEmpty()) {
-                    MediaQuery::create()
-                        ->filterByPrimaryKeys($this->mediasScheduledForDeletion->getPrimaryKeys(false))
+            if ($this->gamesScheduledForDeletion !== null) {
+                if (!$this->gamesScheduledForDeletion->isEmpty()) {
+                    GameQuery::create()
+                        ->filterByPrimaryKeys($this->gamesScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->mediasScheduledForDeletion = null;
+                    $this->gamesScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collMedias !== null) {
-                foreach ($this->collMedias as $referrerFK) {
+            if ($this->collGames !== null) {
+                foreach ($this->collGames as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -429,15 +429,15 @@ abstract class BaseEdition extends BaseObject implements Persistent
 
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(EditionPeer::ID)) {
+        if ($this->isColumnModified(GamePlatformPeer::ID)) {
             $modifiedColumns[':p' . $index++]  = 'id';
         }
-        if ($this->isColumnModified(EditionPeer::NAME)) {
+        if ($this->isColumnModified(GamePlatformPeer::NAME)) {
             $modifiedColumns[':p' . $index++]  = 'name';
         }
 
         $sql = sprintf(
-            'INSERT INTO net_bazzline_media_library_media_edition (%s) VALUES (%s)',
+            'INSERT INTO net_bazzline_media_library_media_game_platform (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -539,13 +539,13 @@ abstract class BaseEdition extends BaseObject implements Persistent
             $failureMap = array();
 
 
-            if (($retval = EditionPeer::doValidate($this, $columns)) !== true) {
+            if (($retval = GamePlatformPeer::doValidate($this, $columns)) !== true) {
                 $failureMap = array_merge($failureMap, $retval);
             }
 
 
-                if ($this->collMedias !== null) {
-                    foreach ($this->collMedias as $referrerFK) {
+                if ($this->collGames !== null) {
+                    foreach ($this->collGames as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
                             $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
                         }
@@ -571,7 +571,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
     {
-        $pos = EditionPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+        $pos = GamePlatformPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -616,11 +616,11 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
-        if (isset($alreadyDumpedObjects['Edition'][$this->getPrimaryKey()])) {
+        if (isset($alreadyDumpedObjects['GamePlatform'][$this->getPrimaryKey()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['Edition'][$this->getPrimaryKey()] = true;
-        $keys = EditionPeer::getFieldNames($keyType);
+        $alreadyDumpedObjects['GamePlatform'][$this->getPrimaryKey()] = true;
+        $keys = GamePlatformPeer::getFieldNames($keyType);
         $result = array(
             $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
@@ -631,8 +631,8 @@ abstract class BaseEdition extends BaseObject implements Persistent
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->collMedias) {
-                $result['Medias'] = $this->collMedias->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            if (null !== $this->collGames) {
+                $result['Games'] = $this->collGames->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -652,7 +652,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
     {
-        $pos = EditionPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+        $pos = GamePlatformPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 
         $this->setByPosition($pos, $value);
     }
@@ -696,7 +696,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
     {
-        $keys = EditionPeer::getFieldNames($keyType);
+        $keys = GamePlatformPeer::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
@@ -709,10 +709,10 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(EditionPeer::DATABASE_NAME);
+        $criteria = new Criteria(GamePlatformPeer::DATABASE_NAME);
 
-        if ($this->isColumnModified(EditionPeer::ID)) $criteria->add(EditionPeer::ID, $this->id);
-        if ($this->isColumnModified(EditionPeer::NAME)) $criteria->add(EditionPeer::NAME, $this->name);
+        if ($this->isColumnModified(GamePlatformPeer::ID)) $criteria->add(GamePlatformPeer::ID, $this->id);
+        if ($this->isColumnModified(GamePlatformPeer::NAME)) $criteria->add(GamePlatformPeer::NAME, $this->name);
 
         return $criteria;
     }
@@ -727,8 +727,8 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function buildPkeyCriteria()
     {
-        $criteria = new Criteria(EditionPeer::DATABASE_NAME);
-        $criteria->add(EditionPeer::ID, $this->id);
+        $criteria = new Criteria(GamePlatformPeer::DATABASE_NAME);
+        $criteria->add(GamePlatformPeer::ID, $this->id);
 
         return $criteria;
     }
@@ -769,7 +769,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param object $copyObj An object of Edition (or compatible) type.
+     * @param object $copyObj An object of GamePlatform (or compatible) type.
      * @param boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
@@ -785,9 +785,9 @@ abstract class BaseEdition extends BaseObject implements Persistent
             // store object hash to prevent cycle
             $this->startCopy = true;
 
-            foreach ($this->getMedias() as $relObj) {
+            foreach ($this->getGames() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addMedia($relObj->copy($deepCopy));
+                    $copyObj->addGame($relObj->copy($deepCopy));
                 }
             }
 
@@ -810,7 +810,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      * objects.
      *
      * @param boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return Edition Clone of current object.
+     * @return GamePlatform Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -830,12 +830,12 @@ abstract class BaseEdition extends BaseObject implements Persistent
      * same instance for all member of this class. The method could therefore
      * be static, but this would prevent one from overriding the behavior.
      *
-     * @return EditionPeer
+     * @return GamePlatformPeer
      */
     public function getPeer()
     {
         if (self::$peer === null) {
-            self::$peer = new EditionPeer();
+            self::$peer = new GamePlatformPeer();
         }
 
         return self::$peer;
@@ -852,42 +852,42 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function initRelation($relationName)
     {
-        if ('Media' == $relationName) {
-            $this->initMedias();
+        if ('Game' == $relationName) {
+            $this->initGames();
         }
     }
 
     /**
-     * Clears out the collMedias collection
+     * Clears out the collGames collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Edition The current object (for fluent API support)
-     * @see        addMedias()
+     * @return GamePlatform The current object (for fluent API support)
+     * @see        addGames()
      */
-    public function clearMedias()
+    public function clearGames()
     {
-        $this->collMedias = null; // important to set this to null since that means it is uninitialized
-        $this->collMediasPartial = null;
+        $this->collGames = null; // important to set this to null since that means it is uninitialized
+        $this->collGamesPartial = null;
 
         return $this;
     }
 
     /**
-     * reset is the collMedias collection loaded partially
+     * reset is the collGames collection loaded partially
      *
      * @return void
      */
-    public function resetPartialMedias($v = true)
+    public function resetPartialGames($v = true)
     {
-        $this->collMediasPartial = $v;
+        $this->collGamesPartial = $v;
     }
 
     /**
-     * Initializes the collMedias collection.
+     * Initializes the collGames collection.
      *
-     * By default this just sets the collMedias collection to an empty array (like clearcollMedias());
+     * By default this just sets the collGames collection to an empty array (like clearcollGames());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -896,158 +896,158 @@ abstract class BaseEdition extends BaseObject implements Persistent
      *
      * @return void
      */
-    public function initMedias($overrideExisting = true)
+    public function initGames($overrideExisting = true)
     {
-        if (null !== $this->collMedias && !$overrideExisting) {
+        if (null !== $this->collGames && !$overrideExisting) {
             return;
         }
-        $this->collMedias = new PropelObjectCollection();
-        $this->collMedias->setModel('Media');
+        $this->collGames = new PropelObjectCollection();
+        $this->collGames->setModel('Game');
     }
 
     /**
-     * Gets an array of Media objects which contain a foreign key that references this object.
+     * Gets an array of Game objects which contain a foreign key that references this object.
      *
      * If the $criteria is not null, it is used to always fetch the results from the database.
      * Otherwise the results are fetched from the database the first time, then cached.
      * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this Edition is new, it will return
+     * If this GamePlatform is new, it will return
      * an empty collection or the current collection; the criteria is ignored on a new object.
      *
      * @param Criteria $criteria optional Criteria object to narrow the query
      * @param PropelPDO $con optional connection object
-     * @return PropelObjectCollection|Media[] List of Media objects
+     * @return PropelObjectCollection|Game[] List of Game objects
      * @throws PropelException
      */
-    public function getMedias($criteria = null, PropelPDO $con = null)
+    public function getGames($criteria = null, PropelPDO $con = null)
     {
-        $partial = $this->collMediasPartial && !$this->isNew();
-        if (null === $this->collMedias || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collMedias) {
+        $partial = $this->collGamesPartial && !$this->isNew();
+        if (null === $this->collGames || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collGames) {
                 // return empty collection
-                $this->initMedias();
+                $this->initGames();
             } else {
-                $collMedias = MediaQuery::create(null, $criteria)
-                    ->filterByEdition($this)
+                $collGames = GameQuery::create(null, $criteria)
+                    ->filterByGamePlatform($this)
                     ->find($con);
                 if (null !== $criteria) {
-                    if (false !== $this->collMediasPartial && count($collMedias)) {
-                      $this->initMedias(false);
+                    if (false !== $this->collGamesPartial && count($collGames)) {
+                      $this->initGames(false);
 
-                      foreach ($collMedias as $obj) {
-                        if (false == $this->collMedias->contains($obj)) {
-                          $this->collMedias->append($obj);
+                      foreach ($collGames as $obj) {
+                        if (false == $this->collGames->contains($obj)) {
+                          $this->collGames->append($obj);
                         }
                       }
 
-                      $this->collMediasPartial = true;
+                      $this->collGamesPartial = true;
                     }
 
-                    $collMedias->getInternalIterator()->rewind();
+                    $collGames->getInternalIterator()->rewind();
 
-                    return $collMedias;
+                    return $collGames;
                 }
 
-                if ($partial && $this->collMedias) {
-                    foreach ($this->collMedias as $obj) {
+                if ($partial && $this->collGames) {
+                    foreach ($this->collGames as $obj) {
                         if ($obj->isNew()) {
-                            $collMedias[] = $obj;
+                            $collGames[] = $obj;
                         }
                     }
                 }
 
-                $this->collMedias = $collMedias;
-                $this->collMediasPartial = false;
+                $this->collGames = $collGames;
+                $this->collGamesPartial = false;
             }
         }
 
-        return $this->collMedias;
+        return $this->collGames;
     }
 
     /**
-     * Sets a collection of Media objects related by a one-to-many relationship
+     * Sets a collection of Game objects related by a one-to-many relationship
      * to the current object.
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param PropelCollection $medias A Propel collection.
+     * @param PropelCollection $games A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Edition The current object (for fluent API support)
+     * @return GamePlatform The current object (for fluent API support)
      */
-    public function setMedias(PropelCollection $medias, PropelPDO $con = null)
+    public function setGames(PropelCollection $games, PropelPDO $con = null)
     {
-        $mediasToDelete = $this->getMedias(new Criteria(), $con)->diff($medias);
+        $gamesToDelete = $this->getGames(new Criteria(), $con)->diff($games);
 
 
-        $this->mediasScheduledForDeletion = $mediasToDelete;
+        $this->gamesScheduledForDeletion = $gamesToDelete;
 
-        foreach ($mediasToDelete as $mediaRemoved) {
-            $mediaRemoved->setEdition(null);
+        foreach ($gamesToDelete as $gameRemoved) {
+            $gameRemoved->setGamePlatform(null);
         }
 
-        $this->collMedias = null;
-        foreach ($medias as $media) {
-            $this->addMedia($media);
+        $this->collGames = null;
+        foreach ($games as $game) {
+            $this->addGame($game);
         }
 
-        $this->collMedias = $medias;
-        $this->collMediasPartial = false;
+        $this->collGames = $games;
+        $this->collGamesPartial = false;
 
         return $this;
     }
 
     /**
-     * Returns the number of related Media objects.
+     * Returns the number of related Game objects.
      *
      * @param Criteria $criteria
      * @param boolean $distinct
      * @param PropelPDO $con
-     * @return int             Count of related Media objects.
+     * @return int             Count of related Game objects.
      * @throws PropelException
      */
-    public function countMedias(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    public function countGames(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
     {
-        $partial = $this->collMediasPartial && !$this->isNew();
-        if (null === $this->collMedias || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collMedias) {
+        $partial = $this->collGamesPartial && !$this->isNew();
+        if (null === $this->collGames || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collGames) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getMedias());
+                return count($this->getGames());
             }
-            $query = MediaQuery::create(null, $criteria);
+            $query = GameQuery::create(null, $criteria);
             if ($distinct) {
                 $query->distinct();
             }
 
             return $query
-                ->filterByEdition($this)
+                ->filterByGamePlatform($this)
                 ->count($con);
         }
 
-        return count($this->collMedias);
+        return count($this->collGames);
     }
 
     /**
-     * Method called to associate a Media object to this object
-     * through the Media foreign key attribute.
+     * Method called to associate a Game object to this object
+     * through the Game foreign key attribute.
      *
-     * @param    Media $l Media
-     * @return Edition The current object (for fluent API support)
+     * @param    Game $l Game
+     * @return GamePlatform The current object (for fluent API support)
      */
-    public function addMedia(Media $l)
+    public function addGame(Game $l)
     {
-        if ($this->collMedias === null) {
-            $this->initMedias();
-            $this->collMediasPartial = true;
+        if ($this->collGames === null) {
+            $this->initGames();
+            $this->collGamesPartial = true;
         }
 
-        if (!in_array($l, $this->collMedias->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
-            $this->doAddMedia($l);
+        if (!in_array($l, $this->collGames->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddGame($l);
 
-            if ($this->mediasScheduledForDeletion and $this->mediasScheduledForDeletion->contains($l)) {
-                $this->mediasScheduledForDeletion->remove($this->mediasScheduledForDeletion->search($l));
+            if ($this->gamesScheduledForDeletion and $this->gamesScheduledForDeletion->contains($l)) {
+                $this->gamesScheduledForDeletion->remove($this->gamesScheduledForDeletion->search($l));
             }
         }
 
@@ -1055,28 +1055,28 @@ abstract class BaseEdition extends BaseObject implements Persistent
     }
 
     /**
-     * @param	Media $media The media object to add.
+     * @param	Game $game The game object to add.
      */
-    protected function doAddMedia($media)
+    protected function doAddGame($game)
     {
-        $this->collMedias[]= $media;
-        $media->setEdition($this);
+        $this->collGames[]= $game;
+        $game->setGamePlatform($this);
     }
 
     /**
-     * @param	Media $media The media object to remove.
-     * @return Edition The current object (for fluent API support)
+     * @param	Game $game The game object to remove.
+     * @return GamePlatform The current object (for fluent API support)
      */
-    public function removeMedia($media)
+    public function removeGame($game)
     {
-        if ($this->getMedias()->contains($media)) {
-            $this->collMedias->remove($this->collMedias->search($media));
-            if (null === $this->mediasScheduledForDeletion) {
-                $this->mediasScheduledForDeletion = clone $this->collMedias;
-                $this->mediasScheduledForDeletion->clear();
+        if ($this->getGames()->contains($game)) {
+            $this->collGames->remove($this->collGames->search($game));
+            if (null === $this->gamesScheduledForDeletion) {
+                $this->gamesScheduledForDeletion = clone $this->collGames;
+                $this->gamesScheduledForDeletion->clear();
             }
-            $this->mediasScheduledForDeletion[]= clone $media;
-            $media->setEdition(null);
+            $this->gamesScheduledForDeletion[]= clone $game;
+            $game->setGamePlatform(null);
         }
 
         return $this;
@@ -1086,75 +1086,25 @@ abstract class BaseEdition extends BaseObject implements Persistent
     /**
      * If this collection has already been initialized with
      * an identical criteria, it returns the collection.
-     * Otherwise if this Edition is new, it will return
-     * an empty collection; or if this Edition has previously
-     * been saved, it will retrieve related Medias from storage.
+     * Otherwise if this GamePlatform is new, it will return
+     * an empty collection; or if this GamePlatform has previously
+     * been saved, it will retrieve related Games from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
-     * actually need in Edition.
+     * actually need in GamePlatform.
      *
      * @param Criteria $criteria optional Criteria object to narrow the query
      * @param PropelPDO $con optional connection object
      * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return PropelObjectCollection|Media[] List of Media objects
+     * @return PropelObjectCollection|Game[] List of Game objects
      */
-    public function getMediasJoinDistributor($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public function getGamesJoinMedia($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
-        $query = MediaQuery::create(null, $criteria);
-        $query->joinWith('Distributor', $join_behavior);
+        $query = GameQuery::create(null, $criteria);
+        $query->joinWith('Media', $join_behavior);
 
-        return $this->getMedias($query, $con);
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Edition is new, it will return
-     * an empty collection; or if this Edition has previously
-     * been saved, it will retrieve related Medias from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Edition.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return PropelObjectCollection|Media[] List of Media objects
-     */
-    public function getMediasJoinType($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        $query = MediaQuery::create(null, $criteria);
-        $query->joinWith('Type', $join_behavior);
-
-        return $this->getMedias($query, $con);
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Edition is new, it will return
-     * an empty collection; or if this Edition has previously
-     * been saved, it will retrieve related Medias from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Edition.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return PropelObjectCollection|Media[] List of Media objects
-     */
-    public function getMediasJoinUser($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        $query = MediaQuery::create(null, $criteria);
-        $query->joinWith('User', $join_behavior);
-
-        return $this->getMedias($query, $con);
+        return $this->getGames($query, $con);
     }
 
     /**
@@ -1186,8 +1136,8 @@ abstract class BaseEdition extends BaseObject implements Persistent
     {
         if ($deep && !$this->alreadyInClearAllReferencesDeep) {
             $this->alreadyInClearAllReferencesDeep = true;
-            if ($this->collMedias) {
-                foreach ($this->collMedias as $o) {
+            if ($this->collGames) {
+                foreach ($this->collGames as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
@@ -1195,10 +1145,10 @@ abstract class BaseEdition extends BaseObject implements Persistent
             $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
-        if ($this->collMedias instanceof PropelCollection) {
-            $this->collMedias->clearIterator();
+        if ($this->collGames instanceof PropelCollection) {
+            $this->collGames->clearIterator();
         }
-        $this->collMedias = null;
+        $this->collGames = null;
     }
 
     /**
@@ -1208,7 +1158,7 @@ abstract class BaseEdition extends BaseObject implements Persistent
      */
     public function __toString()
     {
-        return (string) $this->exportTo(EditionPeer::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(GamePlatformPeer::DEFAULT_STRING_FORMAT);
     }
 
     /**
