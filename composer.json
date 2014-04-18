@@ -27,11 +27,11 @@
     },
     "autoload": {
         "psr-0": {
-            "Controller": "module/",
-            "Database": "module/",
-            "Layout": "module/",
-            "Service": "module/",
-            "View": "module/",
+            "Controller": "application/",
+            "Database": "application/",
+            "Layout": "application/",
+            "Service": "application/",
+            "View": "application/",
             "Test": "test/"
         }
     }
