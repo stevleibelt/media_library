@@ -1,7 +1,7 @@
-vendor/
-composer.lock
-phpunit.xml
 .idea
 cache/
+composer.lock
 configuration/propel/runtime-conf.xml
 configuration/propel/net-bazzline-media-library-conf.php
+phpunit.xml
+vendor/
