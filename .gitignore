@@ -3,5 +3,5 @@ composer.lock
 phpunit.xml
 .idea
 cache/
-data/propel/runtime-conf.xml
-data/propel/net-bazzline-media-library-conf.php
+configuration/propel/runtime-conf.xml
+configuration/propel/net-bazzline-media-library-conf.php
