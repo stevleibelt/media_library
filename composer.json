@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-0": {
-            "Controller": "source/",
-            "Database": "source/",
-            "Layout": "source/",
-            "Service": "source/",
-            "View": "source/",
-            "Test": "test/Test/"
+            "Controller": "module/",
+            "Database": "module/",
+            "Layout": "module/",
+            "Service": "module/",
+            "View": "module/",
+            "Test": "test/"
         }
     }
 }
