@@ -1,6 +1,30 @@
-# media_library
+# Media Library
 
-php html javascript media libary for managing audio, video, book and abstract media types
+This project wants to provide a rest based application to manage your media library. With version 1, it will have support for audio, book, game and video.
+
+It is written in javascript, html and php. The frontend will be an ajax based single side page. A possible mobile app is planned but in the far far away future.
+
+# Milestones
+
+* 0.0.1 -   basic directory structure and database is done, "hello world" from frontend to backend is working
+* 0.1.0 -   user login and session management is working
+* 0.2.0 -   basic design with prepared demo data is working
+* 0.3.0 -   insert/edit/delete (CRUD) do deal with real data
+* 0.7.0 -   shell scripts to setup empty project
+* 0.8.0 -   shell scripts to update system (backup data, composer update)
+* 0.9.0 -   user based media library is working (no sharing between users)
+* 1.0.0 -   first release, like 0.9.0 but with all tests, documentation and stablie api
+
+# Future Plans
+
+* implement search
+* implement unix right based system to share libaries (user, group, other/public)
+* extend search to search for shared libraries
+* implement wish list
+* implement borrwed list
+* create mobile phone application
+* fetch more informations by using third party sources like wikipedia or amazon
+* implement plugin and update architecture
 
 # Thanks
 
