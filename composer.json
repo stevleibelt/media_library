@@ -1,6 +1,6 @@
 {
     "name": "net_bazzline/media_libary",
-    "type": "library",
+    "type": "project",
     "description": "media libary manage website for audio video book",
     "keywords": ["php", "web", "media libary", "website", "audio", "video", "book"],
     "homepage": "https://github.com/stevleibelt/media_libary",
