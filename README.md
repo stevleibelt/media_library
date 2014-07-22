@@ -25,6 +25,14 @@ It is written in javascript, html and php. The frontend will be an ajax based si
 * create mobile phone application
 * fetch more informations by using third party sources like wikipedia or amazon
 * implement plugin and update architecture
+* divide read from write logic (as demonstrated in php magazin 5.14 p 10 ff)
+    * use php/propel objects for writing
+        * writing is working with events to keep update in sql database fast
+        * event handler is taking care of updating reading part
+    * use redis/coucheDb for reading
+        * data of reading can differ from needed output
+            * simple json/xml for general questions
+            * full json/xml when manipulating data
 
 # Thanks
 
