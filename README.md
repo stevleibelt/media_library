@@ -7,6 +7,7 @@ It is written in javascript, html and php. The frontend will be an ajax based si
 # Milestones
 
 * 0.0.1 -   basic directory structure and database is done, "hello world" from frontend to backend is working
+* 0.0.2 -   rest api draft
 * 0.1.0 -   user login and session management is working
 * 0.2.0 -   basic design with prepared demo data is working
 * 0.3.0 -   insert/edit/delete (CRUD) do deal with real data
@@ -18,6 +19,7 @@ It is written in javascript, html and php. The frontend will be an ajax based si
 # Future Plans
 
 * implement search
+* implement elastic search or other nosql based search
 * implement unix right based system to share libaries (user, group, other/public)
 * extend search to search for shared libraries
 * implement wish list
