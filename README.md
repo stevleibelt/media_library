@@ -11,10 +11,16 @@ It is written in javascript, html and php. The frontend will be an ajax based si
 * 0.1.0 -   user login and session management is working
 * 0.2.0 -   basic design with prepared demo data is working
 * 0.3.0 -   insert/edit/delete (CRUD) do deal with real data
-* 0.7.0 -   shell scripts to setup empty project
-* 0.8.0 -   shell scripts to update system (backup data, composer update)
+* 0.4.0 -   implement cqrs
+* 0.7.0 -   script to setup empty project
+* 0.8.0 -   script to update system (backup data, composer update)
 * 0.9.0 -   user based media library is working (no sharing between users)
 * 1.0.0 -   first release, like 0.9.0 but with all tests, documentation and stablie api
+
+# Notes
+
+* authentication
+    * login/password - only hashes are stored in the database
 
 # Future Plans
 

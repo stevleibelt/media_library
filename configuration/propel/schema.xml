@@ -151,13 +151,13 @@
     <table name="media_game" phpName="Game" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="media_id" type="char" size="36" required="true" />
-        <column name="game_platform_id" type="char" size="36" required="true" />
+        <column name="platform_id" type="char" size="36" required="true" />
 
         <foreign-key foreignTable="media_common">
             <reference local="media_id" foreign="id" />
         </foreign-key>
-        <foreign-key foreignTable="media_game_platform">
-            <reference local="game_platform_id" foreign="id" />
+        <foreign-key foreignTable="media_platform">
+            <reference local="platform_id" foreign="id" />
         </foreign-key>
 
         <vendor type="mysql">
@@ -211,7 +211,7 @@
             <parameter name="Charset" value="utf8"/>
         </vendor>
     </table>
-    <table name="media_game_platform" phpName="GamePlatform" package="Media" namespace="Media">
+    <table name="media_platform" phpName="Platform" package="Media" namespace="Media">
         <column name="id" primaryKey="true" type="char" size="36" required="true" />
         <column name="name" type="varchar" size="120" required="true" />
 

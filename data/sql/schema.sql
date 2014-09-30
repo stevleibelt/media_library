@@ -179,16 +179,16 @@ CREATE TABLE net_bazzline_media_library_media_game
 (
     id CHAR(36) NOT NULL,
     media_id CHAR(36) NOT NULL,
-    game_platform_id CHAR(36) NOT NULL,
+    platform_id CHAR(36) NOT NULL,
     PRIMARY KEY (id),
     INDEX net_bazzline_media_library_media_game_FI_1 (media_id),
-    INDEX net_bazzline_media_library_media_game_FI_2 (game_platform_id),
+    INDEX net_bazzline_media_library_media_game_FI_2 (platform_id),
     CONSTRAINT net_bazzline_media_library_media_game_FK_1
         FOREIGN KEY (media_id)
         REFERENCES net_bazzline_media_library_media_common (id),
     CONSTRAINT net_bazzline_media_library_media_game_FK_2
-        FOREIGN KEY (game_platform_id)
-        REFERENCES net_bazzline_media_library_media_game_platform (id)
+        FOREIGN KEY (platform_id)
+        REFERENCES net_bazzline_media_library_media_platform (id)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
@@ -245,12 +245,12 @@ CREATE TABLE net_bazzline_media_library_media_edition
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
--- net_bazzline_media_library_media_game_platform
+-- net_bazzline_media_library_media_platform
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS net_bazzline_media_library_media_game_platform;
+DROP TABLE IF EXISTS net_bazzline_media_library_media_platform;
 
-CREATE TABLE net_bazzline_media_library_media_game_platform
+CREATE TABLE net_bazzline_media_library_media_platform
 (
     id CHAR(36) NOT NULL,
     name VARCHAR(120) NOT NULL,

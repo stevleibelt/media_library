@@ -1,76 +1,210 @@
-# API
+# API and routes
 
-# first level
+Based on [http status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) and [rest](https://en.wikipedia.org/wiki/Representational_state_transfer).
 
 ## authentication
 
-* login
-* password
-
-## media
-
-[* id]
-* distributor_id | name
-* edition_id | name
-* type_id | name
-* user_id
-* age_limit
-* release_date
-
-## audio
-
-[* id]
-[* media_id]
-* name
-* artist_id | name
-* number_of_discs
-* duration
-
-## book
-
-[* id]
-[* media_id]
-* number_of_pages
-* isbn_10
-* isbn_13
-* media_id
-
-## game
-
-[* id]
-[* media_id]
-
-## video
-
-[* id]
-[* media_id]
-* duration
-* number_op_discs
-* media_id
+* GET - <string> login, <string> password
+    * log in
+    * returns 200 and <string> token on success
+    * returns 401 on failure
+* POST - <string> login, <string> password
+    * create new log in
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> login, <string> password
+    * update password
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> login, <string> password
+    * delete log in
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
 
 ## user
 
-* name
-    * first
-    * last
-* email
+* GET - <string> id
+    * returns 200 and 
+        * <string> first name 
+        * <string last name>
+        * <string> email
+    * returns 401 on failure
+* POST - <string> first name, <string last name>, <string> email
+    * create new user
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> first name, <string last name>, <string> email
+    * update user
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete user
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
 
-# second level
+## media
 
-## artist
+### artist
 
-## comment
+* GET - <string> id
+    * returns 200 and <string> name
+    * returns 401 on failure
+* POST - <string> name
+    * create new artist
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name
+    * update artist
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete artist
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
 
-## distributor
+### distributor
 
-## edition
+* GET - <string> id
+    * returns 200 and <string> name
+    * returns 401 on failure
+* POST - <string> name
+    * create new distributor
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name
+    * update distributor
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete distributor
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
 
-## genre
+### edition
 
-## language
+* GET - <string> id
+    * returns 200 and <string> name
+    * returns 401 on failure
+* POST - <string> name
+    * create new edition
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name
+    * update edition
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete edition
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
 
-## platform
+### platform
 
-## type
+* GET - <string> id
+    * returns 200 and <string> name
+    * returns 401 on failure
+* POST - <string> name
+    * create new platform
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name
+    * update platform
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete platform
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
 
-## track
+### genre
+
+* GET - <string> id
+    * returns 200 and <string> name
+    * returns 401 on failure
+* POST - <string> name
+    * create new genre
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name
+    * update genre
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete genre
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
+
+### language
+
+* GET - <string> id
+    * returns 200 and <string> name
+    * returns 401 on failure
+* POST - <string> name
+    * create new language
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name
+    * update language
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete language
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
+
+### type
+
+* GET - <string> id
+    * returns 200 and <string> name
+    * returns 401 on failure
+* POST - <string> name
+    * create new type
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name
+    * update type
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete type
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
+
+### audio
+
+* GET - <string> id
+    * returns 200 and 
+        * <string> name
+        * <string> distributor name
+        * <string> edition name
+        * <string> type name
+        [ * <string> user id ]
+        * <int> age limit
+        * <int> number of discs
+        * <int> created at
+        * <int> released at
+        * 
+    * returns 401 on failure
+* POST - <string> name, <string> distributor name, <string> edition name, <string> type name, <int> age limit, <int> number of discs, <int> created at, <int> released at
+    * create audio
+    * returns 201 on success
+    * returns 400/403 on failure
+* PUT - <string> id, <string> name, <string> distributor name, <string> edition name, <string> type name, <int> age limit, <int> number of discs, <int> created at, <int> released at
+    * update audio
+    * returns 200 on success
+    * returns 400/401/403 on failure
+* DELETE - <string> id
+    * delete audio
+    * returns 200 on success
+    * returns 400/401/403/404 on failure
+
+### audio track
+
+### book
+
+### video
+
+### game
+
+### comment 
+
