@@ -119,6 +119,7 @@ CREATE TABLE net_bazzline_media_library_media_audio_track
     id CHAR(36) NOT NULL,
     name VARCHAR(80) NOT NULL,
     audio_id CHAR(36) NOT NULL,
+    media_id CHAR(36) NOT NULL,
     number_of_play TINYINT(2) NOT NULL,
     number_of_disc TINYINT(2) DEFAULT 1,
     duration INTEGER(6),

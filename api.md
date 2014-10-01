@@ -175,21 +175,138 @@ Based on [http status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_co
 * GET - <string> id
     * returns 200 and 
         * <string> name
-        * <string> distributor name
-        * <string> edition name
+        * distributor
+            * <string> name
+            * <string> id
+        * edition 
+            * <string> name
+            * <string> id
         * <string> type name
-        [ * <string> user id ]
+            * <string> name
+            * <string> id
+        [ * <string> user id
+            * <string> first name
+            * <string> last name
+            * <string> id
+        ]
         * <int> age limit
         * <int> number of discs
         * <int> created at
         * <int> released at
-        * 
+        * collection of audio track
+            * track
+                * <string> id
+                * <string> name
+                * artist
+                    * <string> name
+                    * <string> id
+                * <int> number of play
+                * <int> number of disc
+                * <int> duration
+                * distributor
+                    * <string> name
+                    * <string> id
+                * edition 
+                    * <string> name
+                    * <string> id
+                * <string> type name
+                    * <string> name
+                    * <string> id
+                [ * <string> user id
+                    * <string> first name
+                    * <string> last name
+                    * <string> id
+                ]
     * returns 401 on failure
-* POST - <string> name, <string> distributor name, <string> edition name, <string> type name, <int> age limit, <int> number of discs, <int> created at, <int> released at
+* POST -    * <string> name
+            * distributor
+                * <string> name
+                * <string> id
+            * edition 
+                * <string> name
+                * <string> id
+            * <string> type name
+                * <string> name
+                * <string> id
+            [ * <string> user id
+                * <string> first name
+                * <string> last name
+                * <string> id
+            ]
+            * <int> age limit
+            * <int> number of discs
+            * <int> created at
+            * <int> released at
+            * collection of audio track
+                * track
+                    * <string> id
+                    * <string> name
+                    * artist
+                        * <string> name
+                        * <string> id
+                    * <int> number of play
+                    * <int> number of disc
+                    * <int> duration
+                    * distributor
+                        * <string> name
+                        * <string> id
+                    * edition 
+                        * <string> name
+                        * <string> id
+                    * <string> type name
+                        * <string> name
+                        * <string> id
+                    [ * <string> user id
+                        * <string> first name
+                        * <string> last name
+                        * <string> id
+                    ]
     * create audio
     * returns 201 on success
     * returns 400/403 on failure
-* PUT - <string> id, <string> name, <string> distributor name, <string> edition name, <string> type name, <int> age limit, <int> number of discs, <int> created at, <int> released at
+* PUT - * <string> id
+            * distributor
+                * <string> name
+                * <string> id
+            * edition 
+                * <string> name
+                * <string> id
+            * <string> type name
+                * <string> name
+                * <string> id
+            [ * <string> user id
+                * <string> first name
+                * <string> last name
+                * <string> id
+            ]
+            * <int> age limit
+            * <int> number of discs
+            * <int> created at
+            * <int> released at
+            * collection of audio track
+                * track
+                    * <string> id
+                    * <string> name
+                    * artist
+                        * <string> name
+                        * <string> id
+                    * <int> number of play
+                    * <int> number of disc
+                    * <int> duration
+                    * distributor
+                        * <string> name
+                        * <string> id
+                    * edition 
+                        * <string> name
+                        * <string> id
+                    * <string> type name
+                        * <string> name
+                        * <string> id
+                    [ * <string> user id
+                        * <string> first name
+                        * <string> last name
+                        * <string> id
+                    ]
     * update audio
     * returns 200 on success
     * returns 400/401/403 on failure
