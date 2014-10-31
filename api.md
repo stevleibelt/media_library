@@ -325,3 +325,14 @@ Based on [http status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_co
 
 ### comment 
 
+
+# thoughts
+
+* for first revision, any media only available below user since they are coupled to the user?
+    * /user
+    * /user/<id>
+    * /user/<id>/media
+    * /user/<id>/media/<id>
+    * /user/<id>/media/audio
+    * /user/<id>/media/audio/<id>
+    * /user/<id>/media
