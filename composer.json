@@ -15,24 +15,16 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "luracast/restler": "3.0.0",
         "php": ">=5.3.3",
         "propel/propel1": "1.7.1",
-        "zendframework/zend-config": "2.3.1"
+        "zendframework/zendframework": "2.3.5",
+        "zendframework/zftool": "0.1.0",
+        "zendframework/zend-log": ">=2.2.2",
+        "zfcampus/zf-rest": "1.0.3"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
         "mikey179/vfsStream": "dev-master",
         "mockery/mockery": "dev-master"
-    },
-    "autoload": {
-        "psr-0": {
-            "Controller": "application/",
-            "Database": "application/",
-            "Layout": "application/",
-            "Service": "application/",
-            "View": "application/",
-            "Test": "test/"
-        }
     }
 }
