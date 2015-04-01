@@ -15,6 +15,9 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "components/angular.js": "1.3.13",
+        "components/bootstrap": "3.3.4",
+        "components/font-awesome": "4.3.0",
         "php": ">=5.3.3",
         "propel/propel1": "1.7.1",
         "zendframework/zendframework": "2.3.5",
@@ -23,7 +26,7 @@
         "zfcampus/zf-rest": "1.0.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "3.7.*",
+        "phpunit/phpunit": "dev-master",
         "mikey179/vfsStream": "dev-master",
         "mockery/mockery": "dev-master"
     }
