@@ -4,7 +4,7 @@
     "description": "media libary manage website for audio video book",
     "keywords": ["php", "web", "media libary", "website", "audio", "video", "book"],
     "homepage": "https://github.com/stevleibelt/media_libary",
-    "license": "LGPLv3",
+    "license": "GPL-3.0-or-later",
     "authors": [
 	    {
             "name": "Stev Leibelt",
