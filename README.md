@@ -1,3 +1,7 @@
+# PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
+
+I still like the idea but there is currently no use case to develop it anymore.
+
 # Media Library
 
 This project wants to provide a rest based application to manage your media library. With version 1, it will have support for audio, book, game and video.
